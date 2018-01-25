@@ -4,19 +4,16 @@ object RPS {
     playerMove()
   }
   def pickWinner(move1:String, move2:String)=(move1,move2) match {
-    case (_,_)if move1.equalsIgnoreCase("rock") && move2.equalsIgnoreCase("scissors")=> "Player one wins with rock"
-    case (_,_)if move1.equalsIgnoreCase("paper") && move2.equalsIgnoreCase("rock")=> "Player one wins with paper"
-    case (_,_)if move1.equalsIgnoreCase("scissors") && move2.equalsIgnoreCase("paper")=> "Player one wins with scissors"
-    case (_,_)if move2.equalsIgnoreCase("rock") && move1.equalsIgnoreCase("scissors")=> "Player two wins with rock"
-    case (_,_)if move2.equalsIgnoreCase("paper") && move1.equalsIgnoreCase("rock")=> "Player two wins with paper"
-    case (_,_)if move2.equalsIgnoreCase("scissors") && move1.equalsIgnoreCase("paper")=> "Player two wins with scissors"
+    case (a,b)if a.equalsIgnoreCase("rock") && b.equalsIgnoreCase("scissors") || a.equalsIgnoreCase("paper") && b.equalsIgnoreCase("rock") || a.equalsIgnoreCase("scissors") && b.equalsIgnoreCase("paper")=> "Player one wins"
+    case (a,b)if b.equalsIgnoreCase("rock") && a.equalsIgnoreCase("scissors") || b.equalsIgnoreCase("paper") && a.equalsIgnoreCase("rock") || b.equalsIgnoreCase("scissors") && a.equalsIgnoreCase("paper")=> "Player Two wins"
+    case(a,_)if a.equalsIgnoreCase("exit") => "That's it you run away!"
     case (_,_) => "Tie"
   }
   def aiBias(): Boolean ={
 
     val value = scala.util.Random
-    if ((randomNumber+3) == 5) return true
-    return true
+    if ((randomNumber+2) == 3) return true
+    return false
   }
   def randomNumber(): Int ={
     val value = scala.util.Random
